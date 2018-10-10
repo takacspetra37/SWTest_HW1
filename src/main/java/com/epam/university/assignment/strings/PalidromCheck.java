@@ -6,8 +6,9 @@ package com.epam.university.assignment.strings;
 public class PalidromCheck {
 
     public boolean isPalindrom(String str){
+    	str = str.toLowerCase();
         String reverse = new StringBuilder(str).reverse().toString();
-        return str.equals(str);
+        return reverse.equals(str);
     }
 
 }

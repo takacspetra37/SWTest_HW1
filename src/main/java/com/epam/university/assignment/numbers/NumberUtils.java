@@ -8,8 +8,11 @@ public class NumberUtils {
     public Set<Integer> getDivisors(int number) {
         onlyNonNegativeNumbers(number);
         Set<Integer> result = new HashSet<>();
-        int sqrt = (int) Math.sqrt(number);
-        for (int i = 1; i < sqrt; i++) {
+        //int sqrt = (int) Math.sqrt(number);
+        int sqrt = (int) Math.ceil(number/2);
+        if(number == 2) {sqrt = 2;}
+        if(number == 1) {result.add(1);}
+        for (int i = 1; i < sqrt; i++) { 
             if (number % i == 0) {
                 result.add(i);
                 result.add(number / i);

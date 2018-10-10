@@ -30,13 +30,35 @@ public class NumberStringGeneratorTest {
 		// WHEN
 		int num = 3;
 		String[] result = undertest.generateString(num, 7);
-		String[] expected = new String[] {null, "6,7", "6,7"};
+		String[] expected = new String[] {"6,7", "6,7", "6,7"};
 		
 		// THEN	
 		Assert.assertEquals(expected, result);
 		
-		verify(generator, times(num-1)).generateEven(anyInt());
-		verify(generator, times(num-1)).generateOdd(anyInt());
+		verify(generator, times(num)).generateEven(anyInt());
+		verify(generator, times(num)).generateOdd(anyInt());
+	}
+	
+	@Test
+	public void testGenerateString_null() {
+		
+		generator = mock(NumberGenerator.class);
+		
+		when(generator.generateEven(anyInt())).thenReturn(6);
+		when(generator.generateOdd(anyInt())).thenReturn(7);
+		
+		undertest = new NumberStringGenerator(generator);		
+		
+		// WHEN
+		int num = 0;
+		String[] result = undertest.generateString(num, 7);
+		String[] expected = new String[] {};
+		
+		// THEN	
+		Assert.assertEquals(expected, result);
+		
+		verify(generator, times(num)).generateEven(anyInt());
+		verify(generator, times(num)).generateOdd(anyInt());
 	}
 
 }

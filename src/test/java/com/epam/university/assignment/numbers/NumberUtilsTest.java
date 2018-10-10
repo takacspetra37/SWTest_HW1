@@ -7,7 +7,7 @@ import java.util.Set;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class NumberUtilsTest {
+public class NumberUtilsTest { 
 	
 	private NumberUtils undertest = new NumberUtils();
 	
@@ -27,7 +27,19 @@ public class NumberUtilsTest {
 		expected.add(12);	
 		
 		// THEN	
-		Assert.assertEquals(expected, results);
+		Assert.assertEquals(expected, results); 
+	}
+	
+	@Test
+	public void testDivisors_withNegative() {
+		// GIVEN
+		int number = -12;		
+		
+		try {
+			undertest.getDivisors(number);			
+		} catch(IllegalArgumentException exc) {
+			assertEquals("can't process negative number", exc.getMessage());
+		}	
 	}
 	
 	@Test
@@ -42,6 +54,48 @@ public class NumberUtilsTest {
 		expected.add(2);
 		expected.add(3);
 		expected.add(6);		
+		
+		// THEN	
+		Assert.assertEquals(expected, results);
+	}
+	
+	@Test
+	public void testDivisors_withTwo() {
+		// GIVEN
+		int number = 2;		
+		// WHEN
+		Set<Integer> results = undertest.getDivisors(number);
+		
+		Set<Integer> expected = new HashSet<Integer>(6);
+		expected.add(1);
+		expected.add(2);		
+		
+		// THEN	
+		Assert.assertEquals(expected, results);
+	}
+	
+	@Test
+	public void testDivisors_withOne() {
+		// GIVEN
+		int number = 1;		
+		// WHEN
+		Set<Integer> results = undertest.getDivisors(number);
+		
+		Set<Integer> expected = new HashSet<Integer>(6);
+		expected.add(1);		
+		
+		// THEN	
+		Assert.assertEquals(expected, results);
+	}
+	
+	@Test
+	public void testDivisors_withZero() {
+		// GIVEN
+		int number = 0;		
+		// WHEN
+		Set<Integer> results = undertest.getDivisors(number);
+		
+		Set<Integer> expected = new HashSet<Integer>(6);		
 		
 		// THEN	
 		Assert.assertEquals(expected, results);
@@ -139,6 +193,28 @@ public class NumberUtilsTest {
 	public void testEvenOrOdd_withZero() {
 		// GIVEN
 		int number = 0;		
+		// WHEN
+		String result = undertest.evenOrOdd(number);
+				
+		// THEN	
+		Assert.assertEquals("even", result);
+	}
+	
+	@Test
+	public void testEvenOrOdd_withNegOdd() {
+		// GIVEN
+		int number = -11;		
+		// WHEN
+		String result = undertest.evenOrOdd(number);
+				
+		// THEN	
+		Assert.assertEquals("odd", result);
+	}
+	
+	@Test
+	public void testEvenOrOdd_withNegEven() {
+		// GIVEN
+		int number = -14;		
 		// WHEN
 		String result = undertest.evenOrOdd(number);
 				
