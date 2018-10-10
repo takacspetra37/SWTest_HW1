@@ -42,22 +42,6 @@ public class NumberUtilsTest {
 		}	
 	}
 	
-	@Test
-	public void testDivisors_withPositive2() {
-		// GIVEN
-		int number = 6;		
-		// WHEN
-		Set<Integer> results = undertest.getDivisors(number);
-		
-		Set<Integer> expected = new HashSet<Integer>(6);
-		expected.add(1);
-		expected.add(2);
-		expected.add(3);
-		expected.add(6);		
-		
-		// THEN	
-		Assert.assertEquals(expected, results);
-	}
 	
 	@Test
 	public void testDivisors_withTwo() {

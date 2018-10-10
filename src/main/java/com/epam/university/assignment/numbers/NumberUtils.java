@@ -8,8 +8,10 @@ public class NumberUtils {
     public Set<Integer> getDivisors(int number) {
         onlyNonNegativeNumbers(number);
         Set<Integer> result = new HashSet<>();
+        // We should go up to half of the number with the for cycle to find every divisor
         //int sqrt = (int) Math.sqrt(number);
         int sqrt = (int) Math.ceil(number/2);
+        // Exceptions inserted: 1 and 2 (without these modifications, for cycle will not work for these special cases)
         if(number == 2) {sqrt = 2;}
         if(number == 1) {result.add(1);}
         for (int i = 1; i < sqrt; i++) { 

@@ -12,6 +12,7 @@ public class NumberStringGenerator {
 
     public String[] generateString(int numberPairCount,int max){
         String[] result = new String[numberPairCount];
+        //  Indexing starts from 0 in java
         for(int i=0;i<numberPairCount;i++){
             String element = numberGenerator.generateEven(max)+","+numberGenerator.generateOdd(max);
             result[i]=element;
